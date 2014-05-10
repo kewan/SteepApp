@@ -1,0 +1,26 @@
+.logout-button {
+    margin-top: 10px;
+    float: right;
+}
+
+#claim h2 {
+    color: green;
+    margin: 30px;
+    font-size: 1.2em;
+}
+
+#claim img {
+    height: 50px;
+    max-height: 50px;
+}
+
+#error {
+    color: #e44c55;
+}
+
+.info {
+    margin: 30px; color: #656565; background: #f3f5c7; padding: 5px 20px 5px 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}

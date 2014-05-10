@@ -1,0 +1,24 @@
+<div class="center" style="margin-top: 20px;">
+    <img src="images/logo.png" width="145" height="100" />
+</div>
+
+
+<div class='details' style="text-align: center; margin-top: 30px;">
+    <p id="error" ng-show="error.message">{{error.message}}</p>
+    <div>
+        <input type="text" class="topcoat-text-input" ng-model="user.username" placeholder="username" value="">
+    </div>
+
+    <div>
+        <input type="password" class="topcoat-text-input" ng-model="user.password" placeholder="password" value="">
+    </div>
+
+    <div style="margin-top: 10px">
+        <button class="topcoat-button--cta" disabler="'Checking...'" ng-model="loading" ng-click="doLogin()">Login</button>
+    </div>
+</div>
+
+<div class="info">
+    <p>Don't have a login? You can add one through your OfferFans account.</p>
+</div>
+         

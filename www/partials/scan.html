@@ -1,0 +1,27 @@
+<div class="topcoat-navigation-bar">
+    <div class="topcoat-navigation-bar__item left three-quarters">
+        <h1 class="topcoat-navigation-bar__title">Logged in as {{user.username}}</h1>
+    </div>
+    <div class="topcoat-navigation-bar__item right quarter">
+        <a class="topcoat-icon-button logout-button" ng-click="logout()">
+            Logout
+        </a>
+    </div>
+</div>
+
+
+<div class='details' style="text-align: center; margin-top: 30px;">
+    <button class="topcoat-button--large--cta" disabler="'Checking...'" ng-model="loading" ng-click="scan()">Scan Offer Code</button>
+    <p id="error" ng-show="error.message">{{error.message}}</p>
+    
+
+    <div id="claim" ng-show="claim.code">
+        <h2>{{claim.code}} redeemed!</h2>
+        
+        <img src="{{claim.customer.picture}}" /> 
+        <p><strong>{{claim.customer.name}}</strong> just scored</p>
+        <img src="{{claim.offer.image}}" />
+        <p>{{claim.offer.title}}</p>
+    </div>
+</div>
+         
