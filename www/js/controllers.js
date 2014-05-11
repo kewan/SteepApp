@@ -140,31 +140,24 @@ angular.module('myApp.controllers', [])
         //     return false;
         // }
 
-        $scope.user  = { username: window.localStorage.getItem("username") };
+        // $scope.user  = { username: window.localStorage.getItem("username") };
 
         $scope.scan = function() {
            $scope.error = {};
-           $scope.claim = {};
            $scope.loading = true;
-           Scanner.scan(scanSuccess, scanFailure);
+          //  Scanner.scan(scanSuccess, scanFailure);
+          scanSuccess({text: '5051214764191'})
         }
 
         var scanSuccess = function (result) {
            console.log("Scanner result: \n" +
-                "text: " + result.text + "\n" +
-                "format: " + result.format + "\n" +
-                "cancelled: " + result.cancelled + "\n");
+                "text: " + result.text);
 
-            if (result.cancelled) {
-                $scope.error.message = "Cancelled";
-            } else if (result.format != "QR_CODE") {
-                $scope.error.message = "Unknown barcode format";
+            if (result.text) {
+                Api.createWish({ean: result.text, user_id: 1}, createWishSuccess, createWishFailure);
+                // console.log("redirect to wish");
             } else {
-                if (result.text) {
-                    Api.redeem(result.text, redeemSuccess, redeemFailure);
-                } else {
-                    $scope.error.message = "Can not read barcode";
-                }
+                $scope.error.message = "Can not read barcode";
             }
 
             if ($scope.error.message) {
@@ -182,24 +175,22 @@ angular.module('myApp.controllers', [])
             $scope.$apply();
         }
 
-        var redeemSuccess = function(data, status, headers, config) {
-            $scope.claim = data.claim;
-            $scope.loading = false;
-            Notify.beep();
-            $scope.$apply();
+        var createWishSuccess = function(data, status, headers, config) {
+            console.log("Success", data, status, headers, config);
+            window.location = "#/wish/"+data.id;
          }
 
-         var redeemFailure = function(data, status, headers, config) {
+         var createWishFailure = function(data, status, headers, config) {
              console.log("Error", data, status, headers, config);
              $scope.error.message = (data) ? data.error : $scope.timeoutMessage;
              $scope.loading = false;
              Notify.vibrate();
              $scope.$apply();
-             if (status == 401) {
-                 //unauthorised invalid token
-                 alert(data.error);
-                 window.localStorage.clear();
-                 window.location = "#/login";
-             }
+            //  if (status == 401) {
+            //      //unauthorised invalid token
+            //      alert(data.error);
+            //      window.localStorage.clear();
+            //      window.location = "#/login";
+            //  }
           }
     }]);

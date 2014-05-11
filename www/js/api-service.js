@@ -47,6 +47,13 @@ angular.module('myApp.apiService', [])
                    .error(onFailure);
             },
 
+            createWish: function(data, onSuccess, onFailure) {
+              console.log(data);
+              $http.put(this.buildUrl("/product"), data, {timeout: 5000})
+                   .success(onSuccess)
+                   .error(onFailure);
+            },
+
             updateWish: function(id, data, onSuccess, onFailure) {
 
               console.log(data);

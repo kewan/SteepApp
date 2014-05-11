@@ -3,17 +3,6 @@
     float: right;
 }
 
-#claim h2 {
-    color: green;
-    margin: 30px;
-    font-size: 1.2em;
-}
-
-#claim img {
-    height: 50px;
-    max-height: 50px;
-}
-
 #error {
     color: #e44c55;
 }
@@ -23,4 +12,25 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+#wishDetails{
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:top;
+  text-align: center;
+  min-height: 600px;
+  position: relative;
+}
+
+#wishDetails img {
+  max-width:100% !important; height: auto; display:static; top: 0; left: 0;
+}
+
+#wishDetails .form {
+  background-color:rgba(255,0,255,0.5);
+  padding: 30px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
