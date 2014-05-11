@@ -3,17 +3,17 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.offerfans.scanner"
+        id        = "com.steepapp.app"
         version   = "1.0.1">
 
-    <name>OfferFans Scanner</name>
+    <name>Steep</name>
 
     <description>
-        An app for offerfans.com customers to scan barcodes and redeem offers created on offerfans.com.
+      It's the steep app.
     </description>
 
-    <author href="http://offerfans.com" email="hi@offerfans.com">
-        OfferFans Team
+    <author href="http://steepapp.com" email="hi@steepap.com">
+        Kewan Shunn
     </author>
 
     <!--
