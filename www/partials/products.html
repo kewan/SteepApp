@@ -1,0 +1,36 @@
+<div class="topcoat-navigation-bar">
+    <div class="topcoat-navigation-bar__item left three-quarters">
+        <h1 class="topcoat-navigation-bar__title">Steep</h1>
+    </div>
+    <div class="topcoat-navigation-bar__item right" style="margin-top: 8px;">
+        <div class="topcoat-button-bar">
+          <div class="topcoat-button-bar__item">
+            <a href="#/scan" class="topcoat-button-bar__button">S</a>
+          </div>
+          <div class="topcoat-button-bar__item">
+            <a href="#/products" class="topcoat-button-bar__button">P</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<div class='details' style="text-align: center;">
+  <h1>Your saved products</h1>
+
+  <div ng-repeat="wish in user.wishes" ng-click="editWish();">
+    <a href="#/wish/{{wish.id}}"><img src="{{wish.product.image}}" height="300" width="300" /></a>
+    <div>
+      <h3>{{wish.product.title}}</h3>
+    </div>
+    <div>
+      Current Price:
+      £{{wish.product.price}}
+    </div>
+    <div>
+      > by £{{wish.product.price - wish.price}}
+    </div>
+
+    <a href="#/wish/{{wish.id}}">Change</a>
+  </div>
+</div>

@@ -49,7 +49,29 @@ angular.module('myApp.controllers', [])
             $scope.loading = false;
          };
     }])
-    .controller('WishCtrl', ['$scope', 'Api', 'Notify', function ($scope, Api, Notify) {
+    .controller('ProductCtrl', ['$scope', 'Api', 'Notify', function ($scope, Api, Notify) {
+
+      var userSuccess = function(data, status, headers, config) {
+          console.log("Success ", data);
+          $scope.user = data;
+
+         //  window.localStorage.setItem("access_token", data.token);
+         //  window.localStorage.setItem("username", $scope.user.username);
+         //  window.location = "#/scan";
+       };
+
+      var userError = function(data, status, headers, config) {
+          console.log("Error", data, status, headers, config);
+         //  $scope.error.message = (data) ? data.error : $scope.timeoutMessage;
+         //  Notify.vibrate();
+         //  window.localStorage.clear();
+         //  $scope.loading = false;
+       };
+
+      Api.user(1, userSuccess, userError);
+
+    }])
+    .controller('WishCtrl', ['$scope', 'Api', 'Notify', '$routeParams', function ($scope, Api, Notify, $routeParams) {
 
        var wishSuccess = function(data, status, headers, config) {
            console.log("Success ", data);
@@ -71,7 +93,7 @@ angular.module('myApp.controllers', [])
           //  $scope.loading = false;
         };
 
-      Api.wish(1, wishSuccess, wishError);
+      Api.wish($routeParams.id, wishSuccess, wishError);
 
       $scope.saveWish = function() {
           $scope.error = {};
@@ -97,15 +119,15 @@ angular.module('myApp.controllers', [])
            //  Notify.vibrate();
            //  window.localStorage.clear();
             $scope.loading = false;
-            console.log("Redirect to /products");
+            window.location = "#/products";
          };
 
          var wishUpdateError = function(data, status, headers, config) {
              console.log("Error", data, status, headers, config);
-            //  $scope.error.message = (data) ? data.error : $scope.timeoutMessage;
-            //  Notify.vibrate();
+             $scope.error.message = (data) ? data.error : $scope.timeoutMessage;
+             Notify.vibrate();
             //  window.localStorage.clear();
-            //  $scope.loading = false;
+             $scope.loading = false;
           };
 
           Api.updateWish($scope.wish.id, {price: $scope.wish.price, latitude: 123.45, longitude: 456.89}, wishUpdateSuccess, wishUpdateError);

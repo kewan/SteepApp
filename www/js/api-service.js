@@ -41,6 +41,12 @@ angular.module('myApp.apiService', [])
                    .error(onFailure);
             },
 
+            user: function(id, onSuccess, onFailure) {
+              $http.get(this.buildUrl("/user/"+id), {timeout: 5000})
+                   .success(onSuccess)
+                   .error(onFailure);
+            },
+
             updateWish: function(id, data, onSuccess, onFailure) {
 
               console.log(data);

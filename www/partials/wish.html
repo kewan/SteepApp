@@ -22,6 +22,7 @@
   <input type="range" class="topcoat-range" name="wish-price" ng-model="wish.price" min="1" max="{{wish.product.price-1}}" step="1" value="{{wish.price}}">
 
   <div style="margin: 30px">
+    <p id="error" ng-show="error.message">{{error.message}}</p>
     <button class="topcoat-button--cta" disabler="'Saving...'" ng-model="loading" ng-click="saveWish()">Save</button>
   </div>
 </div>
