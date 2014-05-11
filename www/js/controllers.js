@@ -145,8 +145,8 @@ angular.module('myApp.controllers', [])
         $scope.scan = function() {
            $scope.error = {};
            $scope.loading = true;
-          //  Scanner.scan(scanSuccess, scanFailure);
-          scanSuccess({text: '5051214764191'})
+           Scanner.scan(scanSuccess, scanFailure);
+          // scanSuccess({text: '5051214764191'})
         }
 
         var scanSuccess = function (result) {
