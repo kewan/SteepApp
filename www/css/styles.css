@@ -33,3 +33,15 @@
   bottom: 0;
   width: 100%;
 }
+
+.wishBox {
+  background: #fff;
+  padding: 5px;
+  border: 1px solid #000;
+  margin: 20px;
+}
+
+.info div.col {
+  width: 50%;
+  float: left;
+}

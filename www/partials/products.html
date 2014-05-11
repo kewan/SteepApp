@@ -18,17 +18,22 @@
 <div class='details' style="text-align: center;">
   <h1>Your saved products</h1>
 
-  <div ng-repeat="wish in user.wishes" ng-click="editWish();">
+  <div class="wishBox" ng-repeat="wish in user.wishes" ng-click="editWish();">
     <a href="#/wish/{{wish.id}}"><img src="{{wish.product.image}}" height="300" width="300" /></a>
     <div>
       <h3>{{wish.product.title}}</h3>
     </div>
-    <div>
-      Current Price:
-      £{{wish.product.price}}
-    </div>
-    <div>
-      > by £{{wish.product.price - wish.price}}
+
+    <div class="info">
+      <div class="col">
+        Current Price:
+        <h3>£{{wish.product.price}}</h3>
+      </div>
+      <div class="col">
+        <h3>> by £{{wish.product.price - wish.price}}</h3>
+      </div>
+      <div style="clear:both"></div>
+
     </div>
   </div>
 </div>
