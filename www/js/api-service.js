@@ -8,7 +8,7 @@ angular.module('myApp.apiService', [])
             env: 'development',
 
             options: {
-              development: { url: "http://localhost:3000", version: 'v1' },
+              development: { url: "http://steep.ngrok.com", version: 'v1' },
               staging:     { url: "https://stg.steepapp.com", version: 'v1' },
               production:  { url: "https://www.steepapp.com", version: 'v1' }
             },
