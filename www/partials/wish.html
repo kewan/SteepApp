@@ -10,6 +10,18 @@
 </div>
 
 
-<div class='details' style="text-align: center; margin-top: 30px;">
-  {{wish.price}}
+<div class='details' style="text-align: center;">
+  <img src="{{wish.product.image}}" height="150" style="max-width:100% !important; height: auto; display:block;"/>
+  <h1>{{wish.product.title}}</h1>
+
+  <h3>Current Price</h3>
+  <h3>£{{wish.product.price}}</h3>
+
+  <h3>What would you pay?</h3>
+  <h3>£{{wish.price}}</h3>
+  <input type="range" class="topcoat-range" name="wish-price" ng-model="wish.price" min="1" max="{{wish.product.price-1}}" step="1" value="{{wish.price}}">
+
+  <div style="margin: 30px">
+    <button class="topcoat-button--cta" disabler="'Saving...'" ng-model="loading" ng-click="saveWish()">Save</button>
+  </div>
 </div>

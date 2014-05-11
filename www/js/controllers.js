@@ -54,6 +54,10 @@ angular.module('myApp.controllers', [])
        var wishSuccess = function(data, status, headers, config) {
            console.log("Success ", data);
            $scope.wish = data;
+
+           if(!$scope.wish.price) {
+             $scope.wish.price = $scope.wish.product.price - 1;
+           }
           //  window.localStorage.setItem("access_token", data.token);
           //  window.localStorage.setItem("username", $scope.user.username);
           //  window.location = "#/scan";
@@ -68,6 +72,44 @@ angular.module('myApp.controllers', [])
         };
 
       Api.wish(1, wishSuccess, wishError);
+
+      $scope.saveWish = function() {
+          $scope.error = {};
+          $scope.loading = true;
+
+          if ( $scope.wish === undefined || !$scope.wish.price) {
+              $scope.error.message = 'You have not set a price';
+              Notify.vibrate();
+              $scope.loading = false;
+              return;
+          }
+
+          if ( $scope.wish.price >= $scope.wish.product.price) {
+            $scope.error.message = 'Your desired price is not less then the current price';
+            Notify.vibrate();
+            $scope.loading = false;
+            return;
+          }
+
+        var wishUpdateSuccess = function(data, status, headers, config) {
+            console.log("Success", data, status, headers, config);
+           //  $scope.error.message = (data) ? data.error : $scope.timeoutMessage;
+           //  Notify.vibrate();
+           //  window.localStorage.clear();
+            $scope.loading = false;
+            console.log("Redirect to /products");
+         };
+
+         var wishUpdateError = function(data, status, headers, config) {
+             console.log("Error", data, status, headers, config);
+            //  $scope.error.message = (data) ? data.error : $scope.timeoutMessage;
+            //  Notify.vibrate();
+            //  window.localStorage.clear();
+            //  $scope.loading = false;
+          };
+
+          Api.updateWish($scope.wish.id, {price: $scope.wish.price, latitude: 123.45, longitude: 456.89}, wishUpdateSuccess, wishUpdateError);
+      }
     }])
     .controller('ScanCtrl', ['$scope', 'Scanner', 'Notify', 'Api', function ($scope, Scanner, Notify, Api) {
 
